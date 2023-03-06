@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.gms.google-services'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    namespace 'com.vitorthemyth.tiktok2023tutorials'
+    compileSdk compile_sdk_version
+    buildToolsVersion buildtools_version
+
+    defaultConfig {
+        applicationId "com.vitorthemyth.tiktok2023tutorials"
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        versionCode buildVersionCode()
+        versionName buildVersionName()
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures{
+        viewBinding(true)
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:$core_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+
+    //splash screen
+    implementation "androidx.core:core-splashscreen:$splash_screen_version"
+
+    //fragments
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Groupie
+    implementation "com.github.lisawray.groupie:groupie:$groupie_version"
+    implementation "com.github.lisawray.groupie:groupie-viewbinding:$groupie_version"
+
+    // Crashlytics
+    implementation platform("com.google.firebase:firebase-bom:$firebasebom_version")
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+    //Koin
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-test:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-core-ext:$koin_version"
+    implementation "com.android.support.constraint:constraint-layout:$support_constraint_layout"
+
+    //Hawk
+    implementation "com.orhanobut:hawk:2.0.1"
+
+
+
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "androidx.test:rules:$testrules_version"
+    testImplementation "androidx.test:core:$testcore_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.mockk:mockk:$testmockk_version"
+    testImplementation "androidx.room:room-testing:$testroom_version"
+    testImplementation "androidx.arch.core:core-testing:$testarch_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    implementation "androidx.test.ext:junit-ktx:$androidx_test_ext"
+    androidTestImplementation "androidx.test.ext:junit:1.1.5"
+    androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
+}

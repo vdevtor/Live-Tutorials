@@ -1,0 +1,121 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+
+buildscript {
+    ext.gradle_version = '4.1.2'
+    ext.kotlin_version = '1.6.10'
+    ext.nav_version = '2.5.3'
+    ext.google_services_version = "4.3.13"
+    ext.crashlytics = "2.9.2"
+
+
+    dependencies {
+        dependencies {
+            classpath "com.android.tools.build:gradle:$gradle_version"
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+            classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+            classpath "com.google.gms:google-services:$google_services_version"
+            classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlytics"
+        }
+    }
+}
+
+
+plugins {
+    id 'com.android.application' version '7.4.2' apply false
+    id 'com.android.library' version '7.4.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.8.0' apply false
+}
+
+ext {
+    // Exceed App Versions
+    major_version = 1
+    minor_version = 0
+    patch_version = 0
+    version_classifier = null
+    is_snapshot = false
+
+    // Android versions
+    buildtools_version = "33.0.1"
+    min_sdk_version = 26
+    target_sdk_version = 33
+    compile_sdk_version = 33
+
+
+    // Dependencies versions
+    core_version = "1.9.0"
+    appcompat_version = "1.6.1"
+    constraintlayout_version = "2.1.4"
+    fragment_version = "1.5.5"
+    lifecycle_version = "2.5.1"
+    coroutines_version = "1.6.4"
+    material_version = "1.8.0"
+    koin_version = "3.0.1"
+    koin_viewmodel_version = "2.2.3"
+    firebasebom_version = "29.1.0"
+    support_constraint_layout = "2.0.4"
+    splash_screen_version = "1.0.0"
+    moshi_version = "1.13.0"
+    retrofit_version = "2.9.0"
+    retrofitadapter_version = "0.9.2"
+    okhttp_version = "4.9.0"
+    playserviceslocation_version = "18.0.0"
+    appauth_version = "0.9.1"
+    biometry_version = "1.2.0-alpha05"
+    groupie_version = "2.9.0"
+    swiperefreshlayout_version = "1.1.0"
+    round_image = "3.1.0"
+    flags_version = "1.5.4-alpha-1"
+    glide_version = "4.14.2"
+    color_picker = "2.0.1"
+    time_picker = "4.2.3"
+
+    //Test versions
+    junit_version = "4.13.2"
+    testcore_version = "1.5.0"
+    testrules_version = "1.5.0"
+    testmockk_version = "1.9.3"
+    testroom_version = "2.5.0"
+    testarch_version = "2.2.0"
+    androidx_test_ext = "1.1.5"
+
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+/**
+ * Builds the version code referring to the Minimum Android SDK, Major, Minor and Patch versions
+ *
+ * @return an Integer representing the application's version code
+ */
+Integer buildVersionCode() {
+    return ext.min_sdk_version * 10000000 +
+            ext.major_version * 10000 +
+            ext.minor_version * 100 +
+            ext.patch_version
+}
+
+/**
+ * Builds the version name that will be shown to the user.
+ * It concatenates Major, Minor and Patch versions.
+ * It also check if the current version is using any classifier (Alpha, Beta, RC and so on),
+ * to be added as suffix or even, if it is not a snapshot version, that in this case the suffix
+ * will be "-SNAPSHOT"
+ *
+ * @return a String representing the application's version name that will be shown to the user
+ */
+String buildVersionName() {
+    String versionName = "${ext.major_version}.${ext.minor_version}.${ext.patch_version}"
+    if (ext.version_classifier == null && ext.is_snapshot) {
+        ext.version_classifier = "SNAPSHOT"
+    }
+
+    if (ext.version_classifier != null) {
+        versionName += "-" + ext.version_classifier
+    }
+
+    return versionName
+}
