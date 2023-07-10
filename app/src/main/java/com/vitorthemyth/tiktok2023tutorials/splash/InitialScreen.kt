@@ -38,10 +38,11 @@ class InitialScreen : AppCompatActivity() {
             }
 
             this.setOnExitAnimationListener { splashScreenView ->
-                splashScreenView.remove()
                 if ( Hawk.get<Boolean>("BATMAN",false)){
                     finishAffinity()
                     startActivity(Intent(this@InitialScreen, MainActivity::class.java))
+                } else{
+                    splashScreenView.remove()
                 }
 
             }
@@ -101,6 +102,7 @@ class InitialScreen : AppCompatActivity() {
 
         //dots
         addDots(tips.size)
+
     }
 
     private fun addDots(size: Int, position: Int = 0) {

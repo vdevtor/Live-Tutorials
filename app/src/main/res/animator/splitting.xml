@@ -1,0 +1,27 @@
+<animator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator">
+    <objectAnimator
+        android:propertyName="scaleX"
+        android:valueTo="0"
+        android:valueType="floatType"
+        android:duration="500"
+        android:startOffset="0"/>
+    <objectAnimator
+        android:propertyName="scaleY"
+        android:valueTo="0"
+        android:valueType="floatType"
+        android:duration="500"
+        android:startOffset="0"/>
+    <objectAnimator
+        android:propertyName="translationX"
+        android:valueTo="-200"
+        android:valueType="floatType"
+        android:duration="500"
+        android:startOffset="250"/>
+    <objectAnimator
+        android:propertyName="translationX"
+        android:valueTo="200"
+        android:valueType="floatType"
+        android:duration="500"
+        android:startOffset="250"/>
+</animator>
